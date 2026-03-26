@@ -18,8 +18,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "=== Starting deployment ==="
-            
-            # CD vào thư mục devops (dùng ~ để tránh lộ đường dẫn tuyệt đối)
             cd ~/devops && ./deploy_python_chatbot_facebook.sh
-
             echo "=== Deployment process finished ==="
