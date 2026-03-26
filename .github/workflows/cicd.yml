@@ -10,12 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH deploy
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Deploy Python Chatbot Facebook
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: 103.161.97.193
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd devops
-            ./deploy_python_chatbot_facebook.sh
+            echo "=== Starting deployment ==="
+            
+            # CD vào thư mục devops (dùng ~ để tránh lộ đường dẫn tuyệt đối)
+            cd ~/devops && ./deploy_python_chatbot_facebook.sh
+
+            echo "=== Deployment process finished ==="
