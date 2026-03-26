@@ -16,6 +16,7 @@ jobs:
           host: 103.161.97.193
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # passphrase: ${{ secrets.SSH_PASSPHRASE }} # nếu có
           script: |
             echo "=== Starting deployment ==="
             cd ~/devops && ./deploy_python_chatbot_facebook.sh
