@@ -17,4 +17,5 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            cd devops
             ./deploy_python_chatbot_facebook.sh
