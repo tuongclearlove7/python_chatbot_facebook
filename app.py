@@ -70,7 +70,7 @@ def send_message(psid: str, text: str, messaging_type: str = "RESPONSE") -> bool
     
     try:
         response = requests.post(
-            "https://graph.facebook.com/v21.0/me/messages",
+            "https://graph.facebook.com/v27.0/me/messages",
             params={"access_token": PAGE_ACCESS_TOKEN},
             json=body,
             timeout=10
