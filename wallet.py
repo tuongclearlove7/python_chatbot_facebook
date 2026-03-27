@@ -37,7 +37,7 @@ def create_account(psid: str) -> dict:
         
         return {
             "success": True,
-            "message": f"Tạo tài khoản thành công!\nUsername: {username}\nSố dư: 0$"
+            "message": f"Tạo tài khoản thành công!\nAccount Id: {psid}\nUsername: {username}\nSố dư: 0$"
         }
     finally:
         conn.close()
