@@ -14,9 +14,9 @@ jobs:
         uses: appleboy/ssh-action@v1.2.5
         with:
           host: 103.161.97.193
-          username: ubuntu
+          username: ${{ secrets.USER_NAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "=== Starting deployment ==="
-            cd ~/devops && ./deploy_python_chatbot_facebook.sh
+            ~/devops/deploy_python_chatbot_facebook.sh
             echo "=== Deployment process finished ==="
