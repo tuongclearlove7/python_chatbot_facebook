@@ -111,6 +111,8 @@ async def post_webhook(request: Request):
 
                 text_received = message.get("text", "").lower().strip()
 
+                print(f"Tin nhắn nhận được: {message}")
+
                 if any(greet in text_received for greet in ["hi", "hello", "chào", "hey", "hế lô", "xin chào", "chào bạn"]):
                     text = "Chào bạn! ❤️\nMình là bot được tạo bởi Clearlove7 nè. Hôm nay bạn thế nào rồi?"
 
