@@ -45,12 +45,12 @@ def create_account(psid: str) -> dict:
 def get_balance(psid: str) -> dict:
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM accounts WHERE psid = ?", (psid,))
+    cursor.execute("SELECT psid, username, balance FROM accounts WHERE psid = ?", (psid,))
     result = cursor.fetchone()
     conn.close()
     
     if result:
-        return {"exists": True, "username": result[0], "balance": result[1]}
+        return {"exists": True, "psid": result[0], "username": result[1], "balance": result[2]}
     return {"exists": False}
 
 def recharge(psid: str, amount: int) -> dict:
@@ -71,7 +71,7 @@ def recharge(psid: str, amount: int) -> dict:
         
         return {
             "success": True,
-            "message": f"Nạp tiền thành công +{amount:,}đ\nSố dư hiện tại: {new_balance:,}$"
+            "message": f"Nạp tiền thành công +{amount:,}$\nSố dư hiện tại: {new_balance:,}$"
         }
     finally:
         conn.close()
@@ -92,7 +92,7 @@ def withdraw(psid: str, amount: int) -> dict:
         if current < amount:
             return {
                 "success": False,
-                "message": f"❌ Số dư không đủ!\nSố dư hiện tại: {current:,}đ\nYêu cầu rút: {amount:,}$"
+                "message": f"❌ Số dư không đủ!\nSố dư hiện tại: {current:,}$nYêu cầu rút: {amount:,}$"
             }
 
         new_balance = current - amount
@@ -101,7 +101,7 @@ def withdraw(psid: str, amount: int) -> dict:
         
         return {
             "success": True,
-            "message": f"Rút tiền thành công -{amount:,}đ\nSố dư còn lại: {new_balance:,}$"
+            "message": f"Rút tiền thành công -{amount:,}$\nSố dư còn lại: {new_balance:,}$"
         }
     finally:
         conn.close()
