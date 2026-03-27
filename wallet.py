@@ -92,7 +92,7 @@ def withdraw(psid: str, amount: int) -> dict:
         if current < amount:
             return {
                 "success": False,
-                "message": f"❌ Số dư không đủ!\nSố dư hiện tại: {current:,}$nYêu cầu rút: {amount:,}$"
+                "message": f"❌ Số dư không đủ!\nSố dư hiện tại: {current:,}$\nYêu cầu rút: {amount:,}$"
             }
 
         new_balance = current - amount
