@@ -25,7 +25,11 @@ jobs:
           name: Deploy Python Chatbot Facebook
           command: |
             echo "=== Starting deployment ==="
-            ssh -i ~/temp_ssh_key -o StrictHostKeyChecking=no $USER_NAME@103.161.97.193 \
+            if [ -z "$USER_NAME" ]; then
+              echo "ERROR: USER_NAME environment variable is not set"
+              exit 1
+            fi
+            ssh -i ~/temp_ssh_key -o StrictHostKeyChecking=no -l "$USER_NAME" 103.161.97.193 \
               "bash ~/devops/deploy_python_chatbot_facebook.sh"
             echo "=== Deployment finished ==="
 
