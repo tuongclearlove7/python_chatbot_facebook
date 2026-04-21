@@ -5,7 +5,7 @@ services:
     image: tuongclearlove7777/python-chatbot-facebook:latest
     container_name: chatbot-webhook
     ports:
-      - "8000:8000"
+      - "9000:8000"
     env_file:
       - .env
     restart: unless-stopped
